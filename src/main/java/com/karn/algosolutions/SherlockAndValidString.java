@@ -5,6 +5,8 @@ import java.util.*;
 /**
  * @author Ashish Karn
  * <p>
+ * <b> sherlock and valid string solution in java </b>
+ *
  * Sherlock considers a string to be valid if all characters of the string appear
  * the same number of times. It is also valid if he can remove just 1 character at
  * 1 index in the string, and the remaining characters will occur the same number of
