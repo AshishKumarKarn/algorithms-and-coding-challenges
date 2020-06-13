@@ -32,7 +32,7 @@ public class SherlockAndValidString {
     private static String isValid(String s) {
         char[] charArray = s.toCharArray();
         Map<Character, Integer> map = new HashMap<>();
-        map = GetFrequencyOfCharacters.getFrequencyOfCharacters(charArray, map);
+        map = getFrequencyOfCharacters(charArray, map);
         Collection<Integer> values = map.values();
         Set<Integer> set = new HashSet<>();
         for (Integer value : values) {
@@ -51,5 +51,16 @@ public class SherlockAndValidString {
         } else {
             return "YES";
         }
+    }
+
+    private static Map<Character, Integer> getFrequencyOfCharacters(char[] charArray, Map<Character, Integer> map) {
+        Integer initialFreq = 1;
+        for (char character : charArray) {
+            Integer freq = map.put(character, initialFreq);
+            if (freq != null) {
+                map.put(character, (freq + 1));
+            }
+        }
+        return map;
     }
 }
