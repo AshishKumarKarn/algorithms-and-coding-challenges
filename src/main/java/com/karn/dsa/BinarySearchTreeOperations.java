@@ -22,28 +22,31 @@ class BinarySearchTree {
         this.rootNode = new Node(data);
     }
 
-    public void printTree(){
+    public void printTree() {
         printTreeNode(rootNode);
     }
-    private void printTreeNode(Node node){
-        if(node==null){
+
+    private void printTreeNode(Node node) {
+        if (node == null) {
             System.out.println("End reached");
             return;
         }
-        if(node.leftNode!=null){
-            System.out.println(node.data+">> left >>"+node.leftNode.data);
+        if (node.leftNode != null) {
+            System.out.println(node.data + ">> left >>" + node.leftNode.data);
             printTreeNode(node.leftNode);
         }
-        if(node.rightNode!=null){
-            System.out.println(node.data+">> right >>"+node.rightNode.data);
+        if (node.rightNode != null) {
+            System.out.println(node.data + ">> right >>" + node.rightNode.data);
             printTreeNode(node.rightNode);
         }
     }
-    public boolean searchNode(int data){
+
+    public boolean searchNode(int data) {
         return searchNode(data, rootNode);
     }
+
     private boolean searchNode(int data, Node node) {
-        if(data==node.data){
+        if (data == node.data) {
             System.out.printf("ELEMENT FOUND WITH DATA %s ", data);
             System.out.println();
             return true;
@@ -51,16 +54,13 @@ class BinarySearchTree {
         if (data <= node.data) {
             if (node.leftNode != null) {
                 return searchNode(data, node.leftNode);
-            } else {
-                return false;
             }
         } else {
             if (node.rightNode != null) {
                 return searchNode(data, node.rightNode);
-            } else {
-                return false;
             }
         }
+        return false;
     }
 
     public void addNode(int data) {
