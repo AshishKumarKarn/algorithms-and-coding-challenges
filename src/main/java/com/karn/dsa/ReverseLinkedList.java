@@ -2,26 +2,26 @@ package com.karn.dsa;
 
 public class ReverseLinkedList {
     public static void main(String[] args) {
-        SinglyLinkedList<Integer> singlyLinkedList = new SinglyLinkedList(4);
-        singlyLinkedList.addNode(5);
-        singlyLinkedList.addNode(12);
-        singlyLinkedList.addNode(52);
-        singlyLinkedList.addNode(54);
-        singlyLinkedList.addNode(3);
+        SinglyLinkedList<String> singlyLinkedList = new SinglyLinkedList(4);
+        singlyLinkedList.addNode("Ashish");
+        singlyLinkedList.addNode("12");
+        singlyLinkedList.addNode("52");
+        singlyLinkedList.addNode("54");
+        singlyLinkedList.addNode("3");
         singlyLinkedList.printLinkedList();
-        singlyLinkedList.insertNodeAtIndex(44, 6);
+        singlyLinkedList.insertNodeAtIndex("14", 6);
         singlyLinkedList.printLinkedList();
         singlyLinkedList.reverseLinkedList();
         singlyLinkedList.printLinkedList();
-        singlyLinkedList.addNode(32);
+        singlyLinkedList.addNode("32");
         singlyLinkedList.printLinkedList();
 
     }
 }
 
 class SinglyLinkedList<T> {
-    private Node rootNode;
-    private Node currentNode;
+    private Node<T> rootNode;
+    private Node<T> currentNode;
 
     SinglyLinkedList(T rootData) {
         this.rootNode = new Node(rootData);
@@ -29,15 +29,15 @@ class SinglyLinkedList<T> {
     }
 
     void addNode(T data) {
-        Node node = new Node(data);
+        Node<T> node = new Node(data);
         this.currentNode.nextNode = node;
         this.currentNode = node;
     }
 
     void reverseLinkedList() {
-        Node cursor = rootNode;
-        Node currentNode;
-        Node lastNode = null;
+        Node<T> cursor = rootNode;
+        Node<T> currentNode;
+        Node<T> lastNode = null;
         this.currentNode = rootNode;
         while (cursor != null) {
             currentNode = cursor;
@@ -49,21 +49,21 @@ class SinglyLinkedList<T> {
     }
 
     void printLinkedList() {
-        Node cursor = this.rootNode;
+        Node<T> cursor = this.rootNode;
         StringBuilder sb = new StringBuilder();
         while (cursor != null) {
-            sb.append(cursor.data + " -> ");
+            sb.append(cursor.data).append(" -> ");
             cursor = cursor.nextNode;
         }
         sb.append("null");
         System.out.println(sb.toString());
     }
 
-    void insertNodeAtIndex(int data, int index) {
-        Node node = new Node(data);
-        Node iteratingNode = this.rootNode;
+    void insertNodeAtIndex(T data, int index) {
+        Node<T> node = new Node<T>(data);
+        Node<T> iteratingNode = this.rootNode;
         int iteratingIndex = 0;
-        Node prevNode = null;
+        Node<T> prevNode = null;
         boolean found = false;
         while (iteratingNode != null) {
 
@@ -83,6 +83,7 @@ class SinglyLinkedList<T> {
         }
         if (iteratingIndex == index) {
             found = true;
+            assert prevNode != null;
             prevNode.nextNode = node;
         }
         if (!found) {
@@ -90,25 +91,14 @@ class SinglyLinkedList<T> {
         }
     }
 
-    private class Node<T> {
-        private T data;
-        private Node nextNode;
+    private static class Node<Q> {
+        private final Q data;
+        private Node<Q> nextNode;
 
-        Node(T data) {
+        Node(Q data) {
             this.data = data;
         }
 
-        public void setNextNode(Node nextNode) {
-            this.nextNode = nextNode;
-        }
-
-        public Node getNextNode() {
-            return nextNode;
-        }
-
-        public T getData() {
-            return data;
-        }
     }
 }
 
