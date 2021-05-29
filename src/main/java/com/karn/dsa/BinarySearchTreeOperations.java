@@ -7,16 +7,18 @@ public class BinarySearchTreeOperations {
         binarySearchTree.addNode(14);
         binarySearchTree.addNode(16);
         binarySearchTree.addNode(19);
+        binarySearchTree.addNode(19);
+        binarySearchTree.addNode(19);
         binarySearchTree.addNode(18);
         binarySearchTree.addNode(5);
         binarySearchTree.printTree();
-        System.out.println(binarySearchTree.searchNode(19));
+        System.out.println(binarySearchTree.searchNode(18));
 
     }
 }
 
 class BinarySearchTree {
-    private Node rootNode;
+    private final Node rootNode;
 
     BinarySearchTree(int data) {
         this.rootNode = new Node(data);
@@ -83,8 +85,8 @@ class BinarySearchTree {
         }
     }
 
-    private class Node {
-        private int data;
+    private static class Node {
+        private final int data;
         private Node leftNode;
         private Node rightNode;
 
