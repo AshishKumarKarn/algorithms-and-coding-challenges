@@ -5,7 +5,7 @@ import java.util.Queue;
 
 public class LevelOrderTraversalOrBFSInBST {
     public static void main(String[] args) {
-        BinarySearchTreeBFS binarySearchTreeBFS = new BinarySearchTreeBFS(5);
+        BinarySearchTreeBFS binarySearchTreeBFS = new BinarySearchTreeBFS(11);
         binarySearchTreeBFS.add(12);
         binarySearchTreeBFS.add(13);
         binarySearchTreeBFS.add(10);
@@ -33,7 +33,10 @@ class BinarySearchTreeBFS {
     }
 
     private void printTree(NodeBFS node) {
-
+        if(node==null){
+            System.out.println("Empty tree");
+            return;
+        }
         int nodeData = node.data;
         if (node.leftNode != null) {
             System.out.printf("%s Left Node >> %s \n", nodeData, node.leftNode.data);
