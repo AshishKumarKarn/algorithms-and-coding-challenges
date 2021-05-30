@@ -5,7 +5,7 @@ import java.util.Queue;
 
 public class TraversalInBST {
     public static void main(String[] args) {
-        BinarySearchTreeBFSDFS binarySearchTreeBFSDFS = new BinarySearchTreeBFSDFS(11);
+        BinarySearchTreeBFSDFS<Integer> binarySearchTreeBFSDFS = new BinarySearchTreeBFSDFS<>(11);
         binarySearchTreeBFSDFS.add(12);
         binarySearchTreeBFSDFS.add(13);
         binarySearchTreeBFSDFS.add(10);
@@ -23,14 +23,14 @@ public class TraversalInBST {
     }
 }
 
-class BinarySearchTreeBFSDFS {
-    NodeBFS rootNode;
+class BinarySearchTreeBFSDFS<T extends Comparable> {
+    NodeBFS<T> rootNode;
 
-    BinarySearchTreeBFSDFS(int data) {
-        this.rootNode = new NodeBFS(data);
+    BinarySearchTreeBFSDFS(T data) {
+        this.rootNode = new NodeBFS<>(data);
     }
 
-    public void add(int data) {
+    public void add(T data) {
         add(data, rootNode);
     }
 
@@ -38,12 +38,12 @@ class BinarySearchTreeBFSDFS {
         printTree(rootNode);
     }
 
-    private void printTree(NodeBFS node) {
+    private void printTree(NodeBFS<T> node) {
         if (node == null) {
             System.out.println("Empty tree");
             return;
         }
-        int nodeData = node.data;
+        T nodeData = node.data;
         if (node.leftNode != null) {
             System.out.printf("%s Left Node >> %s \n", nodeData, node.leftNode.data);
             printTree(node.leftNode);
@@ -54,18 +54,22 @@ class BinarySearchTreeBFSDFS {
         }
     }
 
-    private void add(int data, NodeBFS node) {
-        if (data <= node.data) {
+    private void add(T data, NodeBFS<T> node) {
+//        Integer a=5;
+//        Integer b=10;
+//        System.out.println(a.compareTo(b)<=0);
+//        => a <= b or here data <= node.data
+        if (data.compareTo(node.data)<=0) {
             if (node.leftNode != null) {
                 add(data, node.leftNode);
             } else {
-                node.leftNode = new NodeBFS(data);
+                node.leftNode = new NodeBFS<>(data);
             }
         } else {
             if (node.rightNode != null) {
                 add(data, node.rightNode);
             } else {
-                node.rightNode = new NodeBFS(data);
+                node.rightNode = new NodeBFS<>(data);
             }
         }
     }
@@ -74,15 +78,15 @@ class BinarySearchTreeBFSDFS {
         levelOrderTraversal(rootNode);
     }
 
-    private Queue<NodeBFS> nodeBFSQueue = new ArrayDeque<>();
+    private final Queue<NodeBFS<T>> nodeBFSQueue = new ArrayDeque<>();
 
-    private void levelOrderTraversal(NodeBFS node) {
+    private void levelOrderTraversal(NodeBFS<T> node) {
         if (node == null) {
             return;
         }
         nodeBFSQueue.add(node);
         while (!nodeBFSQueue.isEmpty()) {
-            NodeBFS current = nodeBFSQueue.peek();
+            NodeBFS<T> current = nodeBFSQueue.peek();
             System.out.printf("Node>> %s \n", current.data);
             if (current.leftNode != null) {
                 nodeBFSQueue.add(current.leftNode);
@@ -98,7 +102,7 @@ class BinarySearchTreeBFSDFS {
         dfsPreOrder(rootNode);
     }
 
-    private void dfsPreOrder(NodeBFS node) {
+    private void dfsPreOrder(NodeBFS<T> node) {
         if (node == null) {
             return;
         }
@@ -115,7 +119,7 @@ class BinarySearchTreeBFSDFS {
         dfsInOrder(rootNode);
     }
 
-    private void dfsInOrder(NodeBFS node) {
+    private void dfsInOrder(NodeBFS<T> node) {
         if (node == null) return;
         if (node.leftNode != null) dfsInOrder(node.leftNode);
         System.out.printf("Node > %s \n", node.data);
@@ -126,19 +130,19 @@ class BinarySearchTreeBFSDFS {
         dfsPostOrder(rootNode);
     }
 
-    public void dfsPostOrder(NodeBFS nodeBFS) {
+    public void dfsPostOrder(NodeBFS<T> nodeBFS) {
         if (nodeBFS == null) return;
         if (nodeBFS.leftNode != null) dfsPostOrder(nodeBFS.leftNode);
         if (nodeBFS.rightNode != null) dfsPostOrder(nodeBFS.rightNode);
         System.out.printf("Node %s \n", nodeBFS.data);
     }
 
-    private static class NodeBFS {
-        private int data;
-        private NodeBFS leftNode;
-        private NodeBFS rightNode;
+    private static class NodeBFS<Q extends Comparable> {
+        private final Q data;
+        private NodeBFS<Q> leftNode;
+        private NodeBFS<Q> rightNode;
 
-        NodeBFS(int data) {
+        NodeBFS(Q data) {
             this.data = data;
         }
 
