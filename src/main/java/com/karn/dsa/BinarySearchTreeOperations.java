@@ -1,5 +1,7 @@
 package com.karn.dsa;
 
+import static java.lang.Math.max;
+
 public class BinarySearchTreeOperations {
     public static void main(String[] args) {
 
@@ -39,7 +41,7 @@ class BinarySearchTree {
         }
         int leftHeight = findHeightOfTree(node.leftNode);
         int rightHeight = findHeightOfTree(node.rightNode);
-        return Math.max(leftHeight, rightHeight) + 1;
+        return max(leftHeight, rightHeight) + 1;
     }
 
     private void printTreeNode(Node node) {
