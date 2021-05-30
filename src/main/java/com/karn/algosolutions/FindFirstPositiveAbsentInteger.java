@@ -4,13 +4,13 @@ public class FindFirstPositiveAbsentInteger {
 
 
     public static void main(String[] args) {
-        int[] arr = new int[]{3, 7, 1112, 1, 0, -1};//ans should be 4
+        int[] arr = new int[]{3, 7, 2, 1112, 1, 0, -1};//ans should be 4
         System.out.println(solve(arr));
     }
 
     /**
      * Finds first positive integer in array with Big O(n) time complexity
-     * */
+     */
     private static int solve(int[] arr) {
         int total = 0;
         for (int i = 0; i < arr.length; i++) {
