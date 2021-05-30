@@ -59,7 +59,7 @@ class BinarySearchTreeBFSDFS<T extends Comparable> {
 //        Integer b=10;
 //        System.out.println(a.compareTo(b)<=0);
 //        => a <= b or here data <= node.data
-        if (data.compareTo(node.data)<=0) {
+        if (data.compareTo(node.data) <= 0) {
             if (node.leftNode != null) {
                 add(data, node.leftNode);
             } else {
