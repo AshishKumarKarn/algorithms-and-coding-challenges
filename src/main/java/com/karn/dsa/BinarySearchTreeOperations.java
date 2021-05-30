@@ -4,15 +4,16 @@ public class BinarySearchTreeOperations {
     public static void main(String[] args) {
 
         BinarySearchTree binarySearchTree = new BinarySearchTree(15);
-        binarySearchTree.addNode(14);
-        binarySearchTree.addNode(16);
-        binarySearchTree.addNode(19);
-        binarySearchTree.addNode(19);
-        binarySearchTree.addNode(19);
-        binarySearchTree.addNode(18);
-        binarySearchTree.addNode(5);
+//        binarySearchTree.addNode(14);
+//        binarySearchTree.addNode(16);
+//        binarySearchTree.addNode(19);
+//        binarySearchTree.addNode(19);
+//        binarySearchTree.addNode(19);
+//        binarySearchTree.addNode(18);
+//        binarySearchTree.addNode(5);
         binarySearchTree.printTree();
         System.out.println(binarySearchTree.searchNode(18));
+        binarySearchTree.printHeightOfTree();
 
     }
 }
@@ -28,11 +29,25 @@ class BinarySearchTree {
         printTreeNode(rootNode);
     }
 
+    public void printHeightOfTree() {
+        System.out.println(findHeightOfTree(rootNode));
+    }
+
+    private int findHeightOfTree(Node node) {
+        if (node == null) {
+            return -1;
+        }
+        int leftHeight = findHeightOfTree(node.leftNode);
+        int rightHeight = findHeightOfTree(node.rightNode);
+        return Math.max(leftHeight, rightHeight) + 1;
+    }
+
     private void printTreeNode(Node node) {
         if (node == null) {
             System.out.println("End reached");
             return;
         }
+        System.out.println("Node >>"+ node.data);
         if (node.leftNode != null) {
             System.out.println(node.data + ">> left >>" + node.leftNode.data);
             printTreeNode(node.leftNode);
