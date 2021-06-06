@@ -18,6 +18,7 @@ public class NQueen {
     }
 
     private static boolean solveNQueenUtil(int currentRow, int n, Position[] solutions) {
+        //it means all 0,1,2..(n-1) <=> length N , are complete
         if (currentRow == n) {
             return true;
         }
