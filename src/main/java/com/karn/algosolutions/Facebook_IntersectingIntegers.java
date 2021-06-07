@@ -18,19 +18,19 @@ public class Facebook_IntersectingIntegers {
         int i = 0, j = 0, k = 0;
         int[] result = new int[min(arr1.length, arr2.length)];
         while (i < arr1.length && j < arr2.length) {
-            if(arr1[i]==arr2[j]){
-                result[k]=arr1[i];
+            if (arr1[i] == arr2[j]) {
+                result[k] = arr1[i];
                 k++;
-                i++;j++;
-            }else if(arr1[i]>arr2[j]){
+                i++;
                 j++;
-            }else{
+            } else if (arr1[i] > arr2[j]) {
+                j++;
+            } else {
                 i++;
             }
         }
         return result;
     }
-
 
     //works for lower digits only
 //    private static int[] findIntersections(int[] arr1, int[] arr2) {
