@@ -1,14 +1,21 @@
 package com.karn.leetcode;
 
-import java.util.Map;
 /**unresolved*/
 public class InterleavingStrings {
     public static void main(String[] args) {
-        System.out.println(new InterleavingStrings().isInterleave("db",
-                "b",
-                "cbb"));
+        InterleavingStrings interleavingStrings = new InterleavingStrings();
+        //should be true
+        System.out.println(interleavingStrings.isInterleave("aa",
+                "ab",
+                "aaba"));
+
+        //should be false
+        System.out.println(interleavingStrings.isInterleave("bcda",
+                "abc",
+                "adcbacb"));
     }
     public boolean isInterleave(String s1, String s2, String s3) {
+
         return isInterleaveCustom(s1,s2,s3);
     }
     private boolean isInterleaveCustom(String s1, String s2, String s3) {
