@@ -4,7 +4,7 @@ import java.util.BitSet;
 
 public class BitSetUnderstanding {
     public static void main(String[] args) {
-        BitSet bitSet1 = new BitSet();
+        BitSet bitSet1 = new BitSet(2);
         bitSet1.set(3);
         bitSet1.set(2);
         bitSet1.set(1);
@@ -23,12 +23,12 @@ public class BitSetUnderstanding {
         System.out.println(bitSet2);
         // & operation will return 111 = 7
         bitSet1.and(bitSet2);
-        //0 1 2
-        System.out.println(bitSet1);
-        System.out.println(bitSet1.stream().count());
 
-        bitSet1.flip(0,5);
-        System.out.println(bitSet1);
+        System.out.println(bitSet1);//0 1 2
+        System.out.println(bitSet1.stream().count());//3
+
+        bitSet1.flip(0, 5);
+        System.out.println(bitSet1);// !0 !1 !2 !3 !4 => !1 !1 !1 !0 !0 => 0 0 0 1 1 => 3 4
 
     }
 }
