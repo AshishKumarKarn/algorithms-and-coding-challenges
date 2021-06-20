@@ -1,5 +1,7 @@
 package com.karn.youtube.errichto.lecture2;
 
+import java.util.BitSet;
+
 /**
  * You are given N<=1000, each with some weight w[i]. Is there a subset with total
  * weight exactly W?
@@ -28,5 +30,18 @@ public class Knapsack {
             }
         }
         return can[w];
+    }
+    private static boolean solutionUsingBitSet(int[] array, int w) {
+        int n = array.length;
+        BitSet can = new BitSet(w + 1);
+        can.set(0);
+        for (int id = 0; id < n; id++) {
+            for (int i = w; i >= array[id]; i--) {
+                if (can.get(i - array[id])) {
+                    can.set(i);
+                }
+            }
+        }
+        return can.get(w);
     }
 }
