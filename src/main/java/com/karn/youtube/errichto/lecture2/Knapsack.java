@@ -31,6 +31,7 @@ public class Knapsack {
         }
         return can[w];
     }
+
     private static boolean solutionUsingBitSet(int[] array, int w) {
         int n = array.length;
         BitSet can = new BitSet(w + 1);
