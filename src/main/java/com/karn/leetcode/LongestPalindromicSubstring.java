@@ -18,18 +18,9 @@ public class LongestPalindromicSubstring {
             return string;
         }
         int max = 0;
-        String result = string.substring(1);
-        List<String> ss = allSubStrings(string);
-        for (String s : ss) {
-            if (isPalindrome(s)) {
-                int length = s.length();
-                if (max < length) {
-                    result = s;
-                    max = length;
-                }
-            }
-        }
-        return result;
+
+
+        return null;
     }
 
     private List<String> allSubStrings(String string) {
