@@ -17,7 +17,7 @@ public class PalindromeNumber {
         int length = x_string.length();
         int half = length / 2;
         for (int i = 0; i < half; i++) {
-            if (x_string.charAt(i) != x_string.charAt(length -1 - i)) {
+            if (x_string.charAt(i) != x_string.charAt(length - 1 - i)) {
                 return false;
             }
         }
