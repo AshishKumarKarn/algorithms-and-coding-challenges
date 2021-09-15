@@ -2,26 +2,24 @@ package com.karn.leetcode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class LetterCombinationsOfAPhoneNumber {
     public static void main(String[] args) {
         System.out.println(new LetterCombinationsOfAPhoneNumber().letterCombinations("23"));
     }
 
-    private static Map<Integer, String> numPad = new HashMap<>();
+    private static final String[] NUM_PAD = new String[10];
 
     static {
-        numPad.put(2, "abc");
-        numPad.put(3, "def");
-        numPad.put(4, "ghi");
-        numPad.put(5, "jkl");
-        numPad.put(6, "mno");
-        numPad.put(7, "pqrs");
-        numPad.put(8, "tuv");
-        numPad.put(9, "wxyz");
+        NUM_PAD[2] = "abc";
+        NUM_PAD[3] = "def";
+        NUM_PAD[4] = "ghi";
+        NUM_PAD[5] = "jkl";
+        NUM_PAD[6] = "mno";
+        NUM_PAD[7] = "pqrs";
+        NUM_PAD[8] = "tuv";
+        NUM_PAD[9] = "wxyz";
     }
 
     public List<String> letterCombinations(String digits) {
@@ -31,7 +29,7 @@ public class LetterCombinationsOfAPhoneNumber {
 
         char[] chars = digits.toCharArray();
         for (char c : chars) {
-            stringList.add(numPad.get(c - 48));
+            stringList.add(NUM_PAD[c - 48]);
         }
 
         List<String> result = new ArrayList<>();
@@ -44,41 +42,40 @@ public class LetterCombinationsOfAPhoneNumber {
             String[] str2 = stringList.get(1).split("");
             String[] str3 = stringList.get(2).split("");
             String[] str4 = stringList.get(3).split("");
-            for (String element : str1) {
-                for (String item : str2) {
-                    for (String value : str3) {
-                        for (String s : str4) {
-                            result.add(element + item + value + s);
+            for (int i = 0; i < str1.length; i++) {
+                for (int j = 0; j < str2.length; j++) {
+                    for (int k = 0; k < str3.length; k++) {
+                        for (int l = 0; l < str4.length; l++) {
+                            result.add(str1[i] + str2[j] + str3[k] + str4[l]);
                         }
                     }
                 }
             }
-
+            return result;
         } else if (length == 3) {
             String[] str1 = stringList.get(0).split("");
             String[] str2 = stringList.get(1).split("");
             String[] str3 = stringList.get(2).split("");
-            for (String s : str1) {
-                for (String value : str2) {
-                    for (String item : str3) {
-                        result.add(s + value + item);
+            for (int i = 0; i < str1.length; i++) {
+                for (int j = 0; j < str2.length; j++) {
+                    for (int k = 0; k < str3.length; k++) {
+                        result.add(str1[i] + str2[j] + str3[k]);
                     }
                 }
             }
-
+            return result;
         } else if (length == 2) {
             String[] str1 = stringList.get(0).split("");
             String[] str2 = stringList.get(1).split("");
 
-            for (String s : str1) {
-                for (String value : str2) {
-                    result.add(s + value);
+            for (int i = 0; i < str1.length; i++) {
+                for (int j = 0; j < str2.length; j++) {
+                    result.add(str1[i] + str2[j]);
                 }
             }
-        } else if (length == 1) {
-            String str = stringList.get(0);
-            result = Arrays.asList(str.split("").clone());
+            return result;
+        } else {
+            return Arrays.asList(stringList.get(0).split("").clone());
         }
-        return result;
     }
 }
