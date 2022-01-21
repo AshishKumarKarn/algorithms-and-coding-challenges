@@ -91,4 +91,10 @@ public class RottingOrangesTest {
         int[][] grid = {{2}, {2}, {1}, {0}, {1}, {2}};
         Assert.assertEquals(1, rottingOranges.orangesRotting(grid));
     }
+    @Test
+    public void testCase15() {
+        int[][] grid = {{2, 1, 1}, {1, 1, 0}, {0, 1, 2}};
+        Assert.assertEquals(2, rottingOranges.orangesRotting(grid));
+    }
+
 }
