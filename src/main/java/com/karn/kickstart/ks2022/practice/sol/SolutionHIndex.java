@@ -5,28 +5,28 @@ import java.util.*;
 public class SolutionHIndex {
 
     public static int[] getHIndexScore(int[] citationsPerPaper) {
-        int[] hIndex = new int[citationsPerPaper.length];
-        Map<Integer, Integer> MAP = new HashMap<>();
-        for (int i = 0; i < citationsPerPaper.length; i++) {
-            int keys = citationsPerPaper[i];
-            int iterations = Math.min(keys, citationsPerPaper.length);
-            boolean inserted = false;
-            for (int key = (i - 1) < 1 ? hIndex[i] > 0 ? 1 : 0 : hIndex[i - 1]; key <= iterations; key++) {
-                Integer oldVal = MAP.put(key, 1);
-                int oldValue = (oldVal == null) ? 0 : oldVal;
-                int newValue = oldValue + 1;
-                MAP.put(key, newValue);
-                if (key <= (newValue)) {
-                    hIndex[i] = key;
-                    inserted = true;
+            int[] hIndex = new int[citationsPerPaper.length];
+
+            PriorityQueue<Integer> pq = new PriorityQueue<>();
+            for (int i = 0; i < citationsPerPaper.length; i++) {
+                int c = citationsPerPaper[i];
+
+                if (pq.isEmpty()) {
+                    pq.add(c);
+                } else {
+                    if (c > pq.size()) {
+                        pq.add(c);
+                    }
+                    while (pq.size() > 1 && pq.peek() < pq.size()) {
+                        pq.remove();
+                    }
                 }
+
+                hIndex[i] = pq.size();
             }
-            if (!inserted)
-                hIndex[i] = (i - 1) < 0 ? 0 : hIndex[i - 1];
+
+            return hIndex;
         }
-        //System.out.println(MAP);
-        return hIndex;
-    }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
