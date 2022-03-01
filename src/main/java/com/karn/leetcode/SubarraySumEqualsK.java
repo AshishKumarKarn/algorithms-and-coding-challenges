@@ -21,7 +21,7 @@ public class SubarraySumEqualsK {
         for (int num : nums) {
             sum += num;
             //don't add element before querying for current required value
-            if (memory.get((sum - k)) != null) {
+            if (memory.containsKey((sum - k))) {
                 result += memory.get((sum - k));
             }
             Integer lastValue = memory.put(sum, 1);
