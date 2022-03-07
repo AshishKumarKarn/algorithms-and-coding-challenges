@@ -86,13 +86,13 @@ class MaxHeap {
             return;
         }
 
-        int parentI= ((index+1)/2)-1;
-        while (parentI>=0){
-            int temp=elements[index];
-            elements[index]=elements[parentI];
-            elements[parentI]=temp;
+        int parentI = ((index + 1) / 2) - 1;
+        while (parentI >= 0) {
+            int temp = elements[index];
+            elements[index] = elements[parentI];
+            elements[parentI] = temp;
             index = parentI;
-            parentI= ((index+1)/2)-1;
+            parentI = ((index + 1) / 2) - 1;
         }
         elements[0] = elements[position - 1];
 
@@ -155,8 +155,12 @@ class MinHeap {
         elements[position] = data;
         int child = position;
         int parent = ((child + 1) / 2) - 1;
-//        child/2;
         //max heap -> parent > child
+
+        //min heapify the heap, i.e. parent > child in perfect tree.
+        //Condition:
+        //while parent index >= 0, to avoid out of bound, swap until the child element
+        //is less than parent element
         while (parent > -1 && elements[child] < elements[parent]) {
             int temp = elements[child];
             elements[child] = elements[parent];
@@ -178,31 +182,35 @@ class MinHeap {
             return;
         }
 
-        int parentI= ((index+1)/2)-1;
-        while (parentI>=0){
-            int temp=elements[index];
-            elements[index]=elements[parentI];
-            elements[parentI]=temp;
+        int parentI = ((index + 1) / 2) - 1;
+
+        //while parent index is >= 0 swap parent with the particular element
+        while (parentI >= 0) {
+            int temp = elements[index];
+            elements[index] = elements[parentI];
+            elements[parentI] = temp;
             index = parentI;
-            parentI= ((index+1)/2)-1;
+            parentI = ((index + 1) / 2) - 1;
         }
+        //set root element to last element
         elements[0] = elements[position - 1];
 
         int parentIndex = 0;
         int leftChildIndex = 1;
         int rightChildIndex = 2;
 
+        //
         while (leftChildIndex <= position) {
             if (elements[leftChildIndex] < elements[parentIndex]
-                    && (elements[leftChildIndex] < elements[rightChildIndex]||
-                    rightChildIndex>position)) {
+                    && (elements[leftChildIndex] < elements[rightChildIndex] ||
+                    rightChildIndex > position)) {
                 int element = elements[leftChildIndex];
                 elements[leftChildIndex] = elements[parentIndex];
                 elements[parentIndex] = element;
                 parentIndex = leftChildIndex;
             } else if (elements[rightChildIndex] < elements[parentIndex]
                     && elements[rightChildIndex] < elements[leftChildIndex]
-            &&rightChildIndex<position) {
+                    && rightChildIndex < position) {
                 int element = elements[rightChildIndex];
                 elements[rightChildIndex] = elements[parentIndex];
                 elements[parentIndex] = element;
