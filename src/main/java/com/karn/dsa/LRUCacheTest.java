@@ -3,9 +3,9 @@ package com.karn.dsa;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LRUCache{
+public class LRUCacheTest {
     public static void main(String[] args) {
-        LRUCacheImpl lruCache = new LRUCacheImpl(4);
+        LRUCache lruCache = new LRUCache(4);
         lruCache.put(1,2);
         System.out.println(lruCache);
         lruCache.put(3,4);
@@ -24,13 +24,13 @@ public class LRUCache{
         System.out.println(lruCache);
     }
 }
-class LRUCacheImpl {
+class LRUCache {
 
     private final Map<Integer, Node> memory;
     private final LinkedList<Node> queue;
     private final int capacity;
 
-    public LRUCacheImpl(int capacity) {
+    public LRUCache(int capacity) {
         queue = new LinkedList<>(capacity);
         memory = new HashMap<>(capacity + 1, 1);
         this.capacity = capacity;
