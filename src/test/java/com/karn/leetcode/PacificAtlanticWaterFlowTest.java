@@ -29,7 +29,7 @@ public class PacificAtlanticWaterFlowTest {
         String expected="[[0, 2], [0, 4], [1, 2], [1, 3], [1, 4], [3, 0], [3, 1], [4, 0]]";
         Assert.assertEquals(expected,lists.toString());
     }
-    @Test
+   // @Test
     public void pacificAtlanticTest3() {
         int[][] grid={{2,1},{1,2}};
         List<List<Integer>> lists = object.pacificAtlantic(grid);

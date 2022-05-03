@@ -3,7 +3,7 @@ package com.karn.leetcode;
 public class LongestSubstringWithoutRepeatingCharacters {
     public static void main(String[] args) {
         System.out.println(new LongestSubstringWithoutRepeatingCharacters()
-                .lengthOfLongestSubstring("abcabcbb"));
+                .lengthOfLongestSubstring("rrrfsfsfdfdfkbfjvsdfjajODAWJFSNNSDSVSNCDADASDDDDASSS"));
     }
 
     public int lengthOfLongestSubstring(String s) {
