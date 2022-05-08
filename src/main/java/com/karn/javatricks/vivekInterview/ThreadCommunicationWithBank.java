@@ -7,7 +7,7 @@ import java.util.concurrent.*;
 public class ThreadCommunicationWithBank {
 
     public static void main(String[] args) throws Exception {
-       new ConcurrentHashMap();
+     //  new ConcurrentHashMap();
         ExecutorService service = Executors.newFixedThreadPool(2);
         try {
             Callable<Integer> c1 = Portfolio::getBalance;

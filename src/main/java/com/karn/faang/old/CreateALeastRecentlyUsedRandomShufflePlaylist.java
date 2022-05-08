@@ -1,4 +1,4 @@
-package com.karn.faang;
+package com.karn.faang.old;
 
 import java.util.*;
 

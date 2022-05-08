@@ -50,7 +50,7 @@ class MySingleton{
     private MySingleton() {
 
     }
-    private static MySingleton MY_INSTANCE = null;
+    private static volatile MySingleton MY_INSTANCE = null;
     //read resolve method
 
     //doubly checked
