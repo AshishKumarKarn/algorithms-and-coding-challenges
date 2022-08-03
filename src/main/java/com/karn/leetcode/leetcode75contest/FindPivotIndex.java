@@ -4,18 +4,18 @@ import java.util.Arrays;
 
 public class FindPivotIndex {
     public int pivotIndex(int[] nums) {
-        int sum=0;
-        int left=0;
+        int suffixSum=0;
+        int prefixSum=0;
         for (int num : nums) {
-            sum += num;
+            suffixSum += num;
         }
-        int right = sum;
+
         for (int i = 0; i < nums.length; i++) {
-            if(left==right-nums[i]){
+            if(prefixSum==suffixSum-nums[i]){
                 return i;
             }
-            left += nums[i];
-            right -= nums[i];
+            prefixSum += nums[i];
+            suffixSum -= nums[i];
         }
         return -1;
     }
