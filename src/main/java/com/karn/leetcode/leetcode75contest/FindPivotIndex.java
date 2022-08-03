@@ -10,7 +10,6 @@ public class FindPivotIndex {
             sum += num;
         }
         int right = sum;
-        System.out.println(sum);
         for (int i = 0; i < nums.length; i++) {
             if(left==right-nums[i]){
                 return i;
