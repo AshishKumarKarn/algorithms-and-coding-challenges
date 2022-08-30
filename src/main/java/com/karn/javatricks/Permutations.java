@@ -13,9 +13,9 @@ public class Permutations {
         List<List<Integer>> result=new ArrayList<>();
         for (int i = 1; i < (1 << arr.length); i++) {
             List<Integer> subResult=new ArrayList<>();
-            for (int j = 1,k=1; j < arr.length;j<<=1, k++) {
-                if((j&i)==1){
-                    subResult.add(arr[k]);
+            for (int j = 0; j < arr.length;j++) {
+                if((i&(1<<j))!=0){
+                    subResult.add(arr[j]);
                 }
             }
             result.add(subResult);
