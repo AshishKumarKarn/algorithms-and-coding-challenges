@@ -1,10 +1,9 @@
 package com.karn.javatricks;
 
 import java.util.ArrayList;
-import java.util.BitSet;
 import java.util.List;
 
-public class Permutations {
+public class AllSubArrayPermutationCombination {
     public static void main(String[] args) {
         long fact = calculateFactorial(15);
         System.out.println(fact);
