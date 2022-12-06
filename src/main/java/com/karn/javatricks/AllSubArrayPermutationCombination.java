@@ -10,7 +10,7 @@ public class AllSubArrayPermutationCombination {
         int[] arr={1,2,3};
         int num = 0;
         List<List<Integer>> result=new ArrayList<>();
-        for (int i = 1; i < (1 << arr.length); i++) {
+        for (int i = 0; i < (1 << arr.length); i++) {
             List<Integer> subResult=new ArrayList<>();
             for (int j = 0; j < arr.length;j++) {
                 if((i&(1<<j))!=0){
