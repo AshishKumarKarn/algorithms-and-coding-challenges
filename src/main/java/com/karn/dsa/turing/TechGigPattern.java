@@ -5,12 +5,12 @@ package com.karn.dsa.turing;
 public class TechGigPattern {
     public static void main(String[] args) {
         int input=6;
-        for (int i = 0; i < 11; i++) {
-            System.out.println("******FOR "+i+"******");
-            printPattern(i);
-            System.out.println("****************");
-        }
-        printPattern(input);
+        //for (int i = 0; i < 11; i++) {
+          //  System.out.println("******FOR "+i+"******");
+            printPattern(8);
+            //System.out.println("****************");
+     //   }
+      //  printPattern(input);
     }
 
     private static void printPattern(int input) {
