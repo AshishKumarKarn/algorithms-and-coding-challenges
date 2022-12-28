@@ -2,7 +2,9 @@ package com.karn.javatricks.core.interfaces;
 
 public class TestClasses {
     public static void main(String[] args) {
+//        Interface1 i1=new Class1(); //this will lead to java.lang.ClassCastException at line 9
         Interface1 i1=new Class2();
+
         i1.method1();
         Interface2 i2=(Interface2) i1;
         i2.method2();
