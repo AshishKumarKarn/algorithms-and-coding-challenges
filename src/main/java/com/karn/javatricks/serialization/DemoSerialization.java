@@ -7,7 +7,7 @@ public class DemoSerialization {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         String fileName = "file.ser";
-//   /*
+   /*
         ObjectOutputStream oos=new ObjectOutputStream(new FileOutputStream(fileName));
         SomeClass sc=new SomeClass();
         sc.name="Ashish";
@@ -17,8 +17,8 @@ public class DemoSerialization {
         soc.moto="sharing";
         oos.writeObject(soc);
         oos.writeObject(sc);
-//   */
-        //   /*
+  */
+//         /*
         ObjectInputStream ois=new ObjectInputStream(new FileInputStream(fileName));
         SomeOtherClass outputOtherObject= (SomeOtherClass)ois.readObject();
         SomeClass outputObject = (SomeClass)ois.readObject();
@@ -35,6 +35,7 @@ class SomeClass implements Serializable{
 
     public String name;
     public String moto;
+    public String age;
 
     @Override
     public String toString() {
