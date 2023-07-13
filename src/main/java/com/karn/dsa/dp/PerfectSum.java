@@ -18,6 +18,8 @@ public class PerfectSum {
                     } else {
                         dp[i][j] = 0;
                     }
+                    String regex="/asda/";
+                    
                 } else {
                     int nt = dp[i - 1][j];
                     int t = 0;
