@@ -1,5 +1,6 @@
 package com.karn.dsa.sort;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -14,6 +15,7 @@ public class MergeSortTest {
     public void testMerge1() {
         int[] array = {1,4,3,2,5};
         object.mergeSort(array);
-        System.out.println(Arrays.toString(array));
+        int[] expected = {1,2,3,4,5};
+        Assert.assertArrayEquals(expected,array);
     }
 }
