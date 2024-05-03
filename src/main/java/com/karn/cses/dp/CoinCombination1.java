@@ -14,6 +14,11 @@ public class CoinCombination1 {
             solution(coins, target);
         }
     }
+
+    private static long getNumber() {
+        return 0;
+    }
+
     private static int m = 1000000007;
 
     private static void solution(int[] coins, int target) {

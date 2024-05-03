@@ -1,107 +1,59 @@
 package com.karn.leetcode;
 
-/**unresolved*/
 public class InterleavingStrings {
     public static void main(String[] args) {
         InterleavingStrings interleavingStrings = new InterleavingStrings();
         //should be true
-        System.out.println(interleavingStrings.isInterleave("aa",
-                "ab",
-                "aaba"));
+        System.out.println(interleavingStrings.isInterleave("aabcc",
+                "dbbca",
+                "aadbbcbcac"));
 
-        //should be false
+        System.out.println(interleavingStrings.isInterleave("a",
+                "",
+                "a"));
+
+
+                //should be false
         System.out.println(interleavingStrings.isInterleave("bcda",
                 "abc",
                 "adcbacb"));
     }
     public boolean isInterleave(String s1, String s2, String s3) {
-
-        return isInterleaveCustom(s1,s2,s3);
+        if((s1.length()+s2.length())!=s3.length()) return false;
+        dp=new Boolean[s1.length()+1][s2.length()+1];
+        return check(s1,s2,s3,s1.length()-1,s2.length()-1,s3.length()-1);
     }
-    private boolean isInterleaveCustom(String s1, String s2, String s3) {
-        String[] s1a=s1.split("");
-        String[] s2a=s2.split("");
-        String[] s3a=s3.split("");
-        return isInterleaveCustom(s1a,s2a,s3a,0,s1a.length,0,s2a.length,0,s3a.length);
-    }
-
-    private boolean isInterleaveCustom(String[] s1a,
-                                       String[] s2a,
-                                       String[] s3a,
-                                       int i1, int j1,
-                                       int i2, int j2,
-                                       int i3, int j3){
-        if((j3-i3)==0){
+    Boolean[][] dp;
+    private boolean check(String s1, String s2, String s3,int l1,int l2, int l3){
+        if(l1<0&&l2<0){
             return true;
         }
-        if((j3-i3)!=(j2-i2)+(j1-i1)){
-            return false;
-        }
-        boolean isS1Matching = isS1MatchingMax(s1a,s2a,s3a,i1,j1,i2,j2,i3,j3);
-        if(isS1Matching){
-            int i;
-            int k=i3;
-            int count=0;
-            for(i=i1;i<j1;){
-                if(!s1a[i].equals(s3a[k])){
-                    break;
-                }
-                i++;
-                k++;
-                count++;
-            }
-            if(count==0){
-                return false;
-            }
-            return isInterleaveCustom(s1a,s2a,s3a,i,s1a.length,i2,s2a.length,i+i3,s3a.length);
-        }else{
-            int i;
-            int k=i3;
-            int count=0;
-            for(i=i2;i<j2;){
-                if(!s2a[i].equals(s3a[k])){
-                    break;
-                }
-                i++;
-                k++;
-                count++;
-            }
-            if(count==0){
-                return false;
-            }
-            return isInterleaveCustom(s1a,s2a,s3a,i1,s1a.length,i,s2a.length,i+i3,s3a.length);
-        }
-    }
 
-    private boolean isS1MatchingMax(String[] s1a,
-                                    String[] s2a,
-                                    String[] s3a,
-                                    int i1, int j1,
-                                    int i2, int j2,
-                                    int i3, int j3){
+        if(l1<0){
+            return s2.substring(0,l2+1).equals(s3.substring(0,l3+1));
+        }
+        if(l2<0){
+            return s1.substring(0,l1+1).equals(s3.substring(0,l3+1));
+        }
+        if((l1==0&&l2==0)){
+            return dp[l1][l2]=s3.charAt(0)==s1.charAt(0)||s3.charAt(0)==s2.charAt(0);
+        }
+        if(dp[l1][l2]!=null){
+            return dp[l1][l2];
+        }
 
-        int countI;
-        int i;
-        int k=i3;
-        for(countI=0,i=i1;i<j1;){
-            if(!s1a[i].equals(s3a[k])){
-                break;
-            }
-            i++;
-            k++;
-            countI++;
+        boolean secondCharMatching = s2.charAt(l2) == s3.charAt(l3);
+        boolean firstCharMatching = s1.charAt(l1) == s3.charAt(l3);
+        if(firstCharMatching && secondCharMatching){
+            return dp[l1][l2]=check(s1,s2,s3,l1-1,l2,l3-1)||check(s1,s2,s3,l1,l2-1,l3-1);
         }
-        int j;
-        int countJ;
-        k=i3;
-        for(countJ=0,j=i2;j<j2;){
-            if(!s2a[j].equals(s3a[k])){
-                break;
-            }
-            j++;
-            k++;
-            countJ++;
+        if(firstCharMatching){
+            return dp[l1][l2]=check(s1,s2,s3,l1-1,l2,l3-1);
         }
-        return countI>countJ;
+        if(secondCharMatching){
+            return dp[l1][l2]=check(s1,s2,s3,l1,l2-1,l3-1);
+        }
+
+        return dp[l1][l2]=false;
     }
 }
