@@ -24,9 +24,14 @@ public class BitwiseOperators {
         //99-1 = 98
         System.out.println(~-99);
 
-        int number = 1322123;
+        // -99 -1 = -100
+        System.out.println(~99);
+
+        System.out.println((1<<31)-1);
+        System.out.println(Integer.MAX_VALUE);
+        long number = 8922123199992321313L;
         for (int i = 63; i >= 0; i--) {
-            if ((number & (1l << i)) != 0) {
+            if ((number & (1L << i)) != 0) {
                 System.out.print(1);
             } else {
                 System.out.print(0);

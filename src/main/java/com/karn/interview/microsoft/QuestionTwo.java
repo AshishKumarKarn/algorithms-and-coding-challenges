@@ -10,8 +10,6 @@ public class QuestionTwo {
         System.out.println(questionTwo.solution(arr));
         System.out.println(questionTwo.working(arr));
         System.out.println(questionTwo.usingDp(arr));
-        new ArrayList<>(10);
-
     }
     public int solution(int[] arr){
         List<Pair> pairs = new ArrayList<>();
