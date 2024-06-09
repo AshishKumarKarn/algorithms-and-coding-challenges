@@ -3,6 +3,7 @@ package com.karn.dsa.graph;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class DetectCycleBFS {
     // Function to detect cycle in an undirected graph.
