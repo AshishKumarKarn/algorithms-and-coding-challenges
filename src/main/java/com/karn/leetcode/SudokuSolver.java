@@ -7,7 +7,17 @@ import java.util.Stack;
 
 public class SudokuSolver {
     public static void main(String[] args) {
-        String[][] boardStrings = {{"5", "3", ".", ".", "7", ".", ".", ".", "."}, {"6", ".", ".", "1", "9", "5", ".", ".", "."}, {".", "9", "8", ".", ".", ".", ".", "6", "."}, {"8", ".", ".", ".", "6", ".", ".", ".", "3"}, {"4", ".", ".", "8", ".", "3", ".", ".", "1"}, {"7", ".", ".", ".", "2", ".", ".", ".", "6"}, {".", "6", ".", ".", ".", ".", "2", "8", "."}, {".", ".", ".", "4", "1", "9", ".", ".", "5"}, {".", ".", ".", ".", "8", ".", ".", "7", "9"}};
+        String[][] boardStrings = {
+                {".", ".", "1", ".", ".", "4", "8", ".", "."},
+                {".", ".", "3", "2", "8", ".", ".", ".", "5"},
+                {".", "2", ".", ".", ".", "6", ".", ".", "."},
+                {".", ".", "5", ".", ".", ".", ".", "7", "."},
+                {".", "3", ".", "9", "1", ".", "6", ".", "."},
+                {".", ".", ".", ".", ".", "2", ".", ".", "."},
+                {".", "9", ".", "8", "3", ".", "1", ".", "."},
+                {"1", ".", ".", ".", ".", ".", ".", ".", "6"},
+                {".", ".", ".", ".", "4", ".", ".", ".", "."}
+        };
         char[][] board = new char[boardStrings.length][boardStrings[0].length];
         for (int i = 0; i < boardStrings.length; i++) {
             for (int j = 0; j < boardStrings[i].length; j++) {
@@ -66,14 +76,14 @@ public class SudokuSolver {
                     lastNumber++;//lastNumber can't increase more than 9
                     boolean validNumber = true;
                     board[lastElement.i][lastElement.j] = '.';
-                    while(!validPosition(lastNumber, lastElement.i, lastElement.j, board)){
-                        if(lastNumber==9){
+                    while (!validPosition(lastNumber, lastElement.i, lastElement.j, board)) {
+                        if (lastNumber == 9) {
                             validNumber = false;
                             break;
                         }
                         lastNumber++;
                     }
-                    if(validNumber){
+                    if (validNumber) {
                         board[lastElement.i][lastElement.j] = (char) ('0' + (lastNumber));
                         lastElement.number = lastNumber;
                         stack.push(lastElement);

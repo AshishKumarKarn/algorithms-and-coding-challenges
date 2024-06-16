@@ -56,6 +56,22 @@ public class JavaSecurityDemo {
         System.out.println("verify "+verify);
     }
 
+
+    /**
+     * AES/CBC/NoPadding (128)
+     * AES/CBC/PKCS5Padding (128)
+     * AES/ECB/NoPadding (128)
+     * AES/ECB/PKCS5Padding (128)
+     * AES/GCM/NoPadding (128)
+     * DESede/CBC/NoPadding (168)
+     * DESede/CBC/PKCS5Padding (168)
+     * DESede/ECB/NoPadding (168)
+     * DESede/ECB/PKCS5Padding (168)
+     * RSA/ECB/PKCS1Padding (1024, 2048)
+     * RSA/ECB/OAEPWithSHA-1AndMGF1Padding (1024, 2048)
+     * RSA/ECB/OAEPWithSHA-256AndMGF1Padding (1024, 2048)
+     * */
+
     private static void usingAESEncryptionWithIV() throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException, InvalidKeyException {
         //Make key
         KeyGenerator generator = KeyGenerator.getInstance("AES");
@@ -64,11 +80,11 @@ public class JavaSecurityDemo {
         System.out.println("key"+new String(secretKey.getEncoded()));
 
         //get IV
-        SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
-        byte[] r = new byte[16];
-        random.nextBytes(r);
-        IvParameterSpec ivspec = new IvParameterSpec(r);
-        System.out.println("iVspec"+new String(r));
+        SecureRandom secureRandom = SecureRandom.getInstance("SHA1PRNG");
+        byte[] random = new byte[16];
+        secureRandom.nextBytes(random);
+        IvParameterSpec ivSpec = new IvParameterSpec(random);
+        System.out.println("iVspec"+new String(random));
 
         byte[] input = "Devoxx!!".repeat(16).getBytes();
         System.out.println("Actual    = "+ new String(input));
@@ -80,12 +96,12 @@ public class JavaSecurityDemo {
         System.out.println("Encrypted = "+ Arrays.toString(bytes));//notice there is pattern in output
 
         //encryption with iv
-        Cipher cipherIV = Cipher.getInstance("AES/CBC/PKCS5Padding");
-        cipherIV.init(Cipher.ENCRYPT_MODE, secretKey, ivspec);
+        Cipher cipherIV = Cipher.getInstance("AES/CBC/PKCS5Padding"); //NOT RECOMMENDED cbc but other's don't support this IVSpec
+        cipherIV.init(Cipher.ENCRYPT_MODE, secretKey, ivSpec);
         byte[] bytesIV = cipherIV.doFinal(input);
         System.out.println("Encrypted = "+  Arrays.toString(bytesIV));
 
-        cipherIV.init(Cipher.DECRYPT_MODE, secretKey, ivspec);
+        cipherIV.init(Cipher.DECRYPT_MODE, secretKey, ivSpec);
         String original = new String(cipherIV.doFinal(bytesIV));
         System.out.println("Original = "+  original);
     }
