@@ -20,14 +20,15 @@ import java.security.SecureRandom;
 import java.security.Signature;
 import java.security.SignatureException;
 import java.util.Arrays;
+import java.util.Base64;
 
 public class JavaSecurityDemo {
 
     public static void main(String[] args) throws Exception{
 
-//        usingAESEncryptionWithIV();
-//        usingHashing();
-//        usingRSA();//DOESN'T WORK FOR LARGER INPUTS. ASYMMETRIC ENCRYPTION CAN'T BE USED FOR LARGE DATA
+        usingAESEncryptionWithIV();
+        usingHashing();
+        usingRSA();//DOESN'T WORK FOR LARGER INPUTS. ASYMMETRIC ENCRYPTION CAN'T BE USED FOR LARGE DATA
 
         usingDigitalSignature();
 
@@ -77,7 +78,8 @@ public class JavaSecurityDemo {
         KeyGenerator generator = KeyGenerator.getInstance("AES");
         generator.init(192);
         SecretKey secretKey = generator.generateKey();
-        System.out.println("key"+new String(secretKey.getEncoded()));
+        String encodedKey = new String(Base64.getEncoder().encode(secretKey.getEncoded()));
+        System.out.println("key :: "+ encodedKey);
 
         //get IV
         SecureRandom secureRandom = SecureRandom.getInstance("SHA1PRNG");
