@@ -31,25 +31,25 @@ public class MagneticForceBetweenTwoBalls {
             memory.put(position[i], i);
             itemIndex.add(position[i]);
         }
-        return binarySearch(1, max, position, m, itemIndex, memory);
+        return binarySearch(1, max,max, position, m, itemIndex, memory);
     }
 
-    public int binarySearch(int left, int right, int[] positions, int m, List<Integer> itemIndex, Map<Integer, Integer> memory) {
+    public int binarySearch(int left, int right,int max, int[] positions, int m, List<Integer> itemIndex, Map<Integer, Integer> memory) {
 
         if (left > right) {
             return -1;
         }
         int mid = left + (right - left) / 2;
-        boolean possible = isPossible(mid, positions, m, itemIndex, memory);
+        boolean possible = isPossible(mid,right, positions, m, itemIndex, memory);
         if (possible) {
-            return Math.max(mid, binarySearch(mid + 1, right, positions, m, itemIndex, memory));
+            return Math.max(mid, binarySearch(mid + 1, right,max, positions, m, itemIndex, memory));
         } else {
-            return binarySearch(left, mid - 1, positions, m, itemIndex, memory);
+            return binarySearch(left, mid - 1,max, positions, m, itemIndex, memory);
         }
 
     }
 
-    private boolean isPossible(int interval, int[] positions, int m, List<Integer> itemIndex, Map<Integer, Integer> memory) {
+    private boolean isPossible(int interval,int max, int[] positions, int m, List<Integer> itemIndex, Map<Integer, Integer> memory) {
         int position = positions[0];
         int lastIndex = 0;
         while (m != 0) {
@@ -72,6 +72,7 @@ public class MagneticForceBetweenTwoBalls {
             }
             m--;
             position = nextHigherNumber + interval;
+
         }
         return m == 0;
     }

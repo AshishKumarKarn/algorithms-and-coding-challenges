@@ -26,11 +26,11 @@ public class JavaSecurityDemo {
 
     public static void main(String[] args) throws Exception{
 
-        usingAESEncryptionWithIV();
+//        usingAESEncryptionWithIV();
         usingHashing();
-        usingRSA();//DOESN'T WORK FOR LARGER INPUTS. ASYMMETRIC ENCRYPTION CAN'T BE USED FOR LARGE DATA
-
-        usingDigitalSignature();
+//        usingRSA();//DOESN'T WORK FOR LARGER INPUTS. ASYMMETRIC ENCRYPTION CAN'T BE USED FOR LARGE DATA
+//
+//        usingDigitalSignature();
 
     }
 
@@ -110,10 +110,14 @@ public class JavaSecurityDemo {
 
     private static void usingHashing() throws NoSuchAlgorithmException {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");//SHA-1 // MD5 don't use MD5 as it was hacked
-        byte[] digested = digest.digest("Ashish".getBytes());
-        byte[] digested2 = digest.digest("Ashish".getBytes());
+        byte[] digested = digest.digest("ashishkrkarn@gmail.com".getBytes());
+        byte[] digested2 = digest.digest("ashishkrkarn@gmail.com".getBytes());
         byte[] digested3 = digest.digest("Ashisj".getBytes());//small change changes the output completely
-        System.out.println(new String(digested));
+        byte[] encode1 = Base64.getEncoder().encode(digested);
+        byte[] encode2 = Base64.getEncoder().encode(digested2);
+//W29iamVjdCBBcnJheUJ1ZmZlcl0=
+        System.out.println(new String(encode1));
+        System.out.println(new String(encode2));
         System.out.println(new String(digested2));//same value every time
         System.out.println(new String(digested3));
     }
