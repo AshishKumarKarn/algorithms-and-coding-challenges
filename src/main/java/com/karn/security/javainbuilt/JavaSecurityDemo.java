@@ -26,8 +26,8 @@ public class JavaSecurityDemo {
 
     public static void main(String[] args) throws Exception{
 
-//        usingAESEncryptionWithIV();
-        usingHashing();
+        usingAESEncryptionWithIV();
+//        usingHashing();
 //        usingRSA();//DOESN'T WORK FOR LARGER INPUTS. ASYMMETRIC ENCRYPTION CAN'T BE USED FOR LARGE DATA
 //
 //        usingDigitalSignature();
