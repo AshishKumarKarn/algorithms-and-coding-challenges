@@ -153,6 +153,8 @@ public class CandidateCode {
     }
 
     public static void main(String[] args) {
+       LinkedList<Integer> list = new LinkedList<>();
+
         FastReader sc = new FastReader();
         int N = sc.nextInt();
         Node[] nodes = new Node[N + 1];
