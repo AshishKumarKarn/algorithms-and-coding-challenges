@@ -1,4 +1,4 @@
-package com.karn.tleeliminator.lec1;
+package com.karn.tleeliminator.week1;
 
 import java.util.Scanner;
 //https://codeforces.com/edu/course/2/lesson/6/2/practice/status
@@ -33,7 +33,7 @@ public class Ropes {
     private static boolean isPossibleToCutKRopes(double mid, int k, int[] ropes) {
         int count=0;
         for (int i = 0; i < ropes.length; i++) {
-            count += (ropes[i]/mid);
+            count += (int) (ropes[i]/mid);
         }
         return count>=k;
     }
