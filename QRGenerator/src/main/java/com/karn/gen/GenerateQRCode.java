@@ -26,7 +26,7 @@ public class GenerateQRCode {
     //main() method
     public static void main(String args[]) throws WriterException, IOException {
 //data that we want to store in the QR code  
-        String str = "WIFI:S:Airtel_ashi_0638;T:WPA;P:U@akash1;H:false";
+        String str = "WIFI:S:Aditya1202;T:WPA;P:adu09042021;H:false";
 //path where we want to get QR Code  
         String path = "./Quote.png";
 //Encoding charset to be used  

@@ -4,18 +4,15 @@ import java.util.concurrent.CountDownLatch;
 
 public class CountDownLatchDemo {
     public static void main(String[] args) throws InterruptedException {
-        CountDownLatch countDownLatch1 = new CountDownLatch(1);
-        MyThread thread1=new MyThread("T1", countDownLatch1);
+        CountDownLatch countDownLatch = new CountDownLatch(3);
+        MyThread thread1=new MyThread("T1", countDownLatch);
+        MyThread thread2=new MyThread("T2", countDownLatch);
+        MyThread thread3=new MyThread("T3", countDownLatch);
         thread1.start();
-        countDownLatch1.await();
-        CountDownLatch countDownLatch2 = new CountDownLatch(1);
-        MyThread thread2=new MyThread("T2", countDownLatch2);
-        thread2.start();
-        countDownLatch2.await();
-        CountDownLatch countDownLatch3 = new CountDownLatch(1);
-        MyThread thread3=new MyThread("T3", countDownLatch3);
         thread3.start();
-        countDownLatch3.await();
+        thread2.start();
+        countDownLatch.await();
+        System.out.println("Main also finished");
 
     }
 }
