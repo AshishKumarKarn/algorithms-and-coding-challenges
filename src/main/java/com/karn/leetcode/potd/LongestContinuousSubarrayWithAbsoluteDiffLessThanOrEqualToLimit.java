@@ -12,12 +12,6 @@ public class LongestContinuousSubarrayWithAbsoluteDiffLessThanOrEqualToLimit {
         if (nums.length == 1) {
             return 1;
         }
-        Map<Integer,Integer> map=null;
-        Map<Integer,Integer> topTen =
-                map.entrySet().stream()
-                        .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-                        .collect(Collectors.toMap(
-                                Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
         int winMin;
         int winNextMinInd;
         int winMax;
