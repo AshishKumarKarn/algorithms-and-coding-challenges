@@ -39,7 +39,9 @@ public class UsingExecutors {
         for (int i = 0; i < 10; i++) {
             arr[i].join();
         }
-
+ExecutorService executors = Executors.newFixedThreadPool(5);
+//        executors.execute();
+        Future<?> submit = executors.submit(() -> System.out.println(""));
 
 
 

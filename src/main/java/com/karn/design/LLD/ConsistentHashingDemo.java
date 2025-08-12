@@ -4,13 +4,14 @@ import java.util.Arrays;
 
 public class ConsistentHashingDemo {
     public static void main(String[] args) {
-        ConsistentHashing hashing = new ConsistentHashing(12, 3);
+        ConsistentHashing hashing = new ConsistentHashing(Integer.MAX_VALUE, 3);
         hashing.addServer("12.99.12.1");
         hashing.addServer("121.99.1.2");
         hashing.addServer("95.99.12.3");
         hashing.addServer("192.99.12.4");
-//        hashing.addServer("192.99.12.5");
+        hashing.addServer("192.99.12.5");
         System.out.println(Arrays.toString(hashing.ring));
+        //SKEWING ISSUE
     }
 }
 class ConsistentHashing{
@@ -30,10 +31,7 @@ class ConsistentHashing{
         if(hashCode<0){
             hashCode = -hashCode;
         }
-        long pid = ProcessHandle.current().pid();
-        System.out.println("Process Id is "+pid);
-        ProcessHandle.current().children();
-        int index = hashCode %size;
+        int index = hashCode % size;
         System.out.println(index);
         int original = index;
         while(ring[index]!=null){

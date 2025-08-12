@@ -32,8 +32,8 @@ public class Ropes {
 
     private static boolean isPossibleToCutKRopes(double mid, int k, int[] ropes) {
         int count=0;
-        for (int i = 0; i < ropes.length; i++) {
-            count += (int) (ropes[i]/mid);
+        for (int rope : ropes) {
+            count += (int) (rope / mid);
         }
         return count>=k;
     }

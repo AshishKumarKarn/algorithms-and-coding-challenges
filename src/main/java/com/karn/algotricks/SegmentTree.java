@@ -1,5 +1,21 @@
 package com.karn.algotricks;
+class SegmentTreeDemo {
+    public static void main(String[] args) {
+        int[] arr = {1, 3, 5, 7, 9, 11};
+        SegmentTree segmentTree = new SegmentTree(arr);
+        segmentTree.build(0, 0, arr.length - 1);
 
+        System.out.println("Sum of values in given range: " + segmentTree.query(0, 0, arr.length - 1, 0, 2));
+
+        segmentTree.update(0, 0, arr.length - 1, 1, 10);
+        System.out.println("Updated sum of values in given range: " + segmentTree.query(0, 0, arr.length - 1, 0, 2));
+        System.out.println("Sum of values in given range: " + segmentTree.query(0, 0, arr.length - 1, 1, 3));
+        System.out.println("Updated sum of values in given range: " + segmentTree.query(0, 0, arr.length - 1, 2, 5));
+        segmentTree.update(0, 0, arr.length - 1, 4, 6);
+        System.out.println("After update, sum of values in given range: " + segmentTree.query(0, 0, arr.length - 1, 3, 5));
+
+    }
+}
 public class SegmentTree{
     int[] arr;
     int[] segmentTree;
